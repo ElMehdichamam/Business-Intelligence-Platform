@@ -47,4 +47,4 @@ CREATE TABLE order_items (
 
     FOREIGN KEY (product_id)
     REFERENCES products(product_id)
-)
+);
