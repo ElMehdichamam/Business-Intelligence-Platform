@@ -10,4 +10,4 @@ Router.post("/", categoryControllers.createCategory);
 Router.put("/:id", categoryControllers.updateCategory);
 Router.delete("/:id" , categoryControllers.removeCategory);
 
-module.exports = Router
+module.exports = Router;

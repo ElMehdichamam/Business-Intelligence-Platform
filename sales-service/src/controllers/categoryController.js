@@ -5,7 +5,7 @@ const getCategory = async (req,res) =>{
     try {
         const category = await categoryModel.getAllCategories();
 
-        if(!category || category.lenght === 0) return res.status(404).json({message:"Category Not Found"});
+        if(!category || category.length === 0) return res.status(404).json({message:"Category Not Found"});
         res.status(200).json(category)
     } catch (error) {
         return res.status(500).json({
@@ -20,7 +20,7 @@ const getCategoryById = async (req , res) =>{
     try {
         const category = await categoryModel.getCategoriesById(req.params.id);
 
-        if(!category || category.lenght === 0) return res.status(404).json({message:"Category Not Found"});
+        if(!category || category.length === 0) return res.status(404).json({message:"Category Not Found"});
         res.status(200).json(category);
     } catch (error) {
         return res.status(500).json({
@@ -37,7 +37,7 @@ const createCategory = async (req,res) =>{
 
         const category = categoryModel.createCategories(name);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
-        res.status(201).json(category)
+        res.status(201).json({message:"Product Created Succusfully"});
     } catch (error) {
         return res.status(500).json({
             message:error.message
@@ -52,7 +52,7 @@ const updateCategory = async (req,res) =>{
 
         const category = categoryModel.updateCategory(id,name);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
-        res.status(201).json(category)
+        res.status(201).json({message : "Category Updated Succusfully"})
     } catch (error) {
         return res.status(500).json({
             message:error.message
@@ -65,7 +65,7 @@ const removeCategory = async (req,res) =>{
         const {id} = req.params;
         const category = categoryModel.deleteCatogory(id);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
-        res.status(201).json(category)
+        res.status(201).json({message:"Category deleted succusfully"})
     } catch (error) {
         return res.status(500).json({
             message:error.message
