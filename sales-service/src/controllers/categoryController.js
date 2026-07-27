@@ -73,4 +73,4 @@ const removeCategory = async (req,res) =>{
     }
 }
 
-module.exports
+module.exports = {getCategory,getCategoryById,createCategory,updateCategory,removeCategory}
