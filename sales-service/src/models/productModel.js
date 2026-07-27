@@ -2,12 +2,12 @@ const pool = require("../config/db");
 
 // GET ALL PRODUCTS
 
-const getAllProducts = async (req,res) =>{
+const getAllProducts = async () =>{
     const [product] = await pool.query("select * from products");
     return product
 }
 // GET SPECIFIC PRODUCT 
-const getProductById = async (req,res) =>{
+const getProductById = async (id) =>{
     const [product] = await pool.query("select * from products where id = ?",[id]);
     return product
 }
