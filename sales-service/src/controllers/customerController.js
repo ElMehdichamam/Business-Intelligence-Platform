@@ -1,10 +1,10 @@
-const categoryModel = require("../models/customerModel");
+const customerModel = require("../models/customerModel");
 
 // GET ORDER
 
 const getAllCustomers = async (req,res) =>{
     try {
-        const customer = await categoryModel.getAllCustomers();
+        const customer = await customerModel.getAllCustomers();
         
         if(!customer || customer.length === 0) return res.status(404).json({message:"Customer Not Found"});
         res.status(200).json(customer)
@@ -17,7 +17,7 @@ const getAllCustomers = async (req,res) =>{
 
 const getCustomerById = async (req,res) =>{
     try {
-        const customer = await categoryModel.getCustomerById(req.params.id);
+        const customer = await customerModel.getCustomerById(req.params.id);
 
         if(!customer || customer.length === 0) return res.status(404).json({ message : "Customer Not Found"});
         res.status(200).json(customer);
@@ -32,7 +32,7 @@ const createCustomer = async (req,res) => {
     try {
         const {name} = req.body;
 
-        const customer = await categoryModel.createCustomer(name);
+        const customer = await customerModel.createCustomer(name);
         if(!customer || customer.affectedRows === 0) return res.status(404).json({ message : "Customer Not Found"});
         res.status(200).json(customer);
     } catch (error) {
@@ -48,7 +48,7 @@ const updateCustomer = async (req,res) => {
         const {name} = req.body;
         const {id} = req.params;
 
-        const customer = await categoryModel.updateCustomer(id,name);
+        const customer = await customerModel.updateCustomer(id,name);
 
         if(!customer || customer.affectedRows === 0) return res.status(404).json({ message : "Customer Not Found"});
         res.status(200).json(customer);
@@ -65,8 +65,9 @@ const removeCustomer = async (req,res) => {
     try {
         const {id} = req.params;
 
-        const customer = await categoryModel.removeCustomer(id);
+        const customer = await customerModel.removeCustomer(id);
         if(!customer || customer.affectedRows === 0) return res.status(404).json({message:"Customer Not Found"});
+        res.status(200).json({message: "Customer deleted successfully"});
     } catch (error) {
         return res.status(500).json({
             message:error.message

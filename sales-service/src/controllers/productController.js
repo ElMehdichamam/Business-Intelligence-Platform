@@ -35,7 +35,7 @@ const createProduct = async (req,res) =>{
     try{
         const { name, price , category_id , stock } = req.body;
 
-        const product = productModel.createProduct(name);
+        const product = await productModel.createProduct(name,price,category_id,stock);
         if(product.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message:"Product Created Succusfully"});
     } catch (error) {
@@ -50,7 +50,7 @@ const updateProduct = async (req,res) =>{
         const {name,price,stock} = req.body;
         const {id} = req.params;
 
-        const product = productModel.updateProduct(id,name);
+        const product = await productModel.updateProduct(id,name);
         if(product.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message : "Category Updated Succusfully"})
     } catch (error) {
@@ -63,7 +63,7 @@ const updateProduct = async (req,res) =>{
 const removeProduct = async (req,res) =>{
     try {
         const {id} = req.params;
-        const product = productModel.removeProduct(id);
+        const product = await productModel.removeProduct(id);
         if(product.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message:"Product deleted succusfully"})
     } catch (error) {

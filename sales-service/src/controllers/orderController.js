@@ -1,10 +1,10 @@
-const categoryModel = require("../models/orderModel");
+const orderModel = require("../models/orderModel");
 
 // GET ORDER
 
 const getAllOrders = async (req,res) =>{
     try {
-        const orders = await categoryModel.createOrder();
+        const orders = await orderModel.createOrder();
         if(!orders || orders.length === 0) return res.status(404).json({message:"Order Not Found"});
         res.status(200).json(orders)
     } catch (error) {
@@ -16,7 +16,7 @@ const getAllOrders = async (req,res) =>{
 
 const getOrderById = async (req,res) =>{
     try {
-        const order = await categoryModel.getOrderById(req.params.id);
+        const order = await orderModel.getOrderById(req.params.id);
         if(!order || order.length === 0) return res.status(404).json({ message : "Order Not Found"});
         res.status(200).json(order);
     } catch (error) {
@@ -30,7 +30,7 @@ const createOrder = async (req,res) => {
     try {
         const {customer_id} = req.body;
 
-        const order = await categoryModel.createOrder(customer_id);
+        const order = await orderModel.createOrder(customer_id);
         if(!order || order.affectedRows === 0) return res.status(404).json({ message : "Order Not Found"});
         res.status(200).json(order);
     } catch (error) {
@@ -45,7 +45,7 @@ const updateOrder = async (req,res) => {
         const {customer_id} = req.body;
         const {order_id} = req.params;
 
-        const order = await categoryModel.updateOrder(order_id,customer_id);
+        const order = await orderModel.updateOrder(order_id,customer_id);
         if(!order || order.affectedRows === 0) return res.status(404).json({ message : "Order Not Found"});
         res.status(200).json(order);
     } catch (error) {
@@ -58,7 +58,7 @@ const updateOrder = async (req,res) => {
 const removeOrder = async (req,res) => {
     try {
         const {order_id} = req.params;
-        const order = await categoryModel.removeOrder(order_id);
+        const order = await orderModel.removeOrder(order_id);
         if(!order || order.affectedRows === 0) return res.status(404).json({message:"Order Not Found"});
     } catch (error) {
         return res.status(500).json({

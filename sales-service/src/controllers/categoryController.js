@@ -35,7 +35,7 @@ const createCategory = async (req,res) =>{
     try{
         const { name } = req.body;
 
-        const category = categoryModel.createCategories(name);
+        const category = await categoryModel.createCategories(name);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message:"Product Created Succusfully"});
     } catch (error) {
@@ -50,7 +50,7 @@ const updateCategory = async (req,res) =>{
         const {name} = req.body;
         const {id} = req.params;
 
-        const category = categoryModel.updateCategory(id,name);
+        const category = await categoryModel.updateCategory(id,name);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message : "Category Updated Succusfully"})
     } catch (error) {
@@ -63,7 +63,7 @@ const updateCategory = async (req,res) =>{
 const removeCategory = async (req,res) =>{
     try {
         const {id} = req.params;
-        const category = categoryModel.deleteCatogory(id);
+        const category = await categoryModel.deleteCatogory(id);
         if(category.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message:"Category deleted succusfully"})
     } catch (error) {
