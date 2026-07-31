@@ -30,7 +30,7 @@ const getProductById = async (req , res) =>{
 
 }
 
-// CREATE CATEGORY 
+// CREATE PRODUCT 
 const createProduct = async (req,res) =>{
     try{
         const { name, price , category_id , stock } = req.body;
@@ -50,7 +50,7 @@ const updateProduct = async (req,res) =>{
         const {name,price,stock} = req.body;
         const {id} = req.params;
 
-        const product = await productModel.updateProduct(id,name);
+        const product = await productModel.updateProduct(id,name,price,stock);
         if(product.affectedRows === 0) return res.status(404).json({message : "Category Not found"});
         res.status(201).json({message : "Category Updated Succusfully"})
     } catch (error) {

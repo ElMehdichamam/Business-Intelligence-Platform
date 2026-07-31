@@ -34,7 +34,7 @@ const createCustomer = async (req,res) => {
 
         const customer = await customerModel.createCustomer(name);
         if(!customer || customer.affectedRows === 0) return res.status(404).json({ message : "Customer Not Found"});
-        res.status(200).json(customer);
+        res.status(200).json({message: "Customer created successfully"});
     } catch (error) {
         return res.status(500).json({
             message:error.message
@@ -51,7 +51,7 @@ const updateCustomer = async (req,res) => {
         const customer = await customerModel.updateCustomer(id,name);
 
         if(!customer || customer.affectedRows === 0) return res.status(404).json({ message : "Customer Not Found"});
-        res.status(200).json(customer);
+        res.status(200).json({message: "Customer Updated successfully"});
 
     } catch (error) {
         return res.status(500).json({

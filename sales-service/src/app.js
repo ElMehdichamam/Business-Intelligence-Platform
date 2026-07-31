@@ -10,8 +10,8 @@ const app = express();
 app.use(express.json());
 app.use("/categories",categoriesRoutes);
 app.use("/customers",customersRoutes);
-app.use("/categories",ordersRoutes);
-app.use("/categories",productRoutes);
+app.use("/orders",ordersRoutes);
+app.use("/products",productRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
