@@ -8,7 +8,7 @@ const getAllProducts = async () =>{
 }
 // GET SPECIFIC PRODUCT 
 const getProductById = async (id) =>{
-    const [product] = await pool.query("select * from products where id = ?",[id]);
+    const [product] = await pool.query("select * from products where product_id = ?",[id]);
     return product
 }
 // CREATE A PRODUCT
@@ -18,12 +18,12 @@ const createProduct = async (name,price,category_id,stock) =>{
 }
 // UPDATE A PRODUCT 
 const updateProduct = async (id,name,price,stock) =>{
-    const [product] = await pool.query("update products set product_name = ? , product_price = ? , stock = ? where product_id = ?",[id,name,price,stock]);
+    const [product] = await pool.query("update products set product_name = ? , product_price = ? , stock = ? where product_id = ?",[name,price,stock,id]);
     return product
 }
 // REMOVE A PRODUCT
 const removeProduct = async (id) => {
-    const [product] = pool.query("Delete From products where product_id = ? ",[id]);
+    const [product] = await pool.query("Delete From products where product_id = ? ",[id]);
     return product
 }
 

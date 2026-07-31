@@ -8,7 +8,7 @@ const getAllCustomers = async () =>{
 }
 // GET SPECIFIC customer 
 const getCustomerById = async (id) =>{
-    const [customer] = await pool.query("select * from customers where id = ?",[id]);
+    const [customer] = await pool.query("select * from customers where customer_id = ?",[id]);
     return customer
 }
 // CREATE A PRODUCT
@@ -18,12 +18,12 @@ const createCustomer = async (name) =>{
 }
 // UPDATE A PRODUCT 
 const updateCustomer = async (id,name) =>{
-    const [customer] = await pool.query("update customers set customer_name = ?  where customer_id = ?",[id,name]);
+    const [customer] = await pool.query("update customers set customer_name = ?  where customer_id = ?",[name,id]);
     return customer
 }
 // REMOVE A PRODUCT
 const removeCustomer = async (id) => {
-    const [customer] = pool.query("Delete From customers where customer_id = ? ",[id]);
+    const [customer] = await pool.query("Delete From customers where customer_id = ? ",[id]);
     return customer
 }
 

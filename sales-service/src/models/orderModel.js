@@ -18,12 +18,12 @@ const createOrder = async (customer_id) =>{
 }
 // UPDATE A PRODUCT 
 const updateOrder = async (order_id,customer_id) =>{
-    const [order] = await pool.query("update orders set customer_id = ?  where order_id = ?",[order_id,customer_id]);
+    const [order] = await pool.query("update orders set customer_id = ?  where order_id = ?",[customer_id,order_id]);
     return order
 }
 // REMOVE A PRODUCT
 const removeOrder = async (order_id) => {
-    const [order] = pool.query("Delete From orders where order_id = ? ",[id]);
+    const [order] = await pool.query("Delete From orders where order_id = ? ",[order_id]);
     return order
 }
 
